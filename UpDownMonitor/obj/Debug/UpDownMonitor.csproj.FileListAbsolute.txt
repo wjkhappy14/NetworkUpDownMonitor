@@ -1,0 +1,12 @@
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.csprojAssemblyReference.cache
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.Controls.NetGraph.resources
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.Properties.Resources.resources
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.csproj.GenerateResource.cache
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.csproj.CoreCompileInputs.cache
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\bin\Debug\UpDownMonitor.exe.config
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\bin\Debug\UpDownMonitor.exe
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\bin\Debug\UpDownMonitor.pdb
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.exe
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.pdb
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.NetGraphForm.resources
+C:\Users\AngkorW\source\repos\UpDownMonitor\UpDownMonitor\obj\Debug\UpDownMonitor.OptionsForm.resources
