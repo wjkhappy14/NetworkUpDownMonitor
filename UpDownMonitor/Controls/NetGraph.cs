@@ -58,18 +58,22 @@ namespace UpDownMonitor.Controls
             }
         }
 
+        /// <summary>
+        /// 创建画笔
+        /// </summary>
         private void CreatePens()
         {
-            const int OPACITY = 192; // 75%.
+            const int OPACITY = 255; //192; // 75%.//透明度
 
-            applePen = new Pen(Color.FromArgb(OPACITY, 255, 76, 76));
-            pineapplePen = new Pen(Color.FromArgb(OPACITY, 0, 255, 0).Desaturate(.4f));
-            ppapPen = new Pen(Color.FromArgb(OPACITY, 255, 255, 0).Desaturate(.3f));
+            applePen = new Pen(Color.Red);//Color.FromArgb(OPACITY, 255, 76, 76));
 
-            headroomPen = new Pen(Color.FromArgb(40, 0, 0, 0));
+            pineapplePen = new Pen(Color.FromArgb(OPACITY, 0, 255, 0).Desaturate(1.4f));
+            ppapPen = new Pen(Color.FromArgb(OPACITY, 255, 255, 0).Desaturate(1.3f));
 
-            periodPen = new Pen(Color.FromArgb(60, 0, 0, 0));
-            lightPeriodPen = new Pen(Color.FromArgb(16, 0, 0, 0));
+            headroomPen = new Pen(Color.Yellow);
+
+            periodPen = new Pen(Color.Purple);
+            lightPeriodPen = new Pen(Color.FromArgb(160, 0, 0, 0));
         }
 
         public void Reset()
@@ -88,6 +92,16 @@ namespace UpDownMonitor.Controls
                 StopWarningAnimation();
 
                 // Use entire graph area regardless of clipping region.
+                Bitmap bitmap = new Bitmap(400, 100);
+                for (int x = 0; x < bitmap.Width; x++)
+                {
+                    for (int y = 0; y < bitmap.Height; y++)
+                    {
+                        bitmap.SetPixel(x, y, Color.Black);
+                    }
+                }
+
+                e.Graphics.DrawImage(bitmap, GraphRectangle);
                 PaintGraph(e.Graphics, GraphRectangle);
             }
             else
@@ -105,11 +119,12 @@ namespace UpDownMonitor.Controls
         {
             // Drawing start point on x-axis.
             int x = surface.Right - 1;
+            g.SmoothingMode = SmoothingMode.HighQuality;
 
             foreach (Sample sample in sampler)
             {
-                float downstream = sample.Downstream / (float)sampler.MaximumSpeed;
-                float upstream = sample.Upstream / (float)sampler.MaximumSpeed;
+                float downstream = sample.Downstream / (float)sampler.MaximumSpeed;//下载速度
+                float upstream = sample.Upstream / (float)sampler.MaximumSpeed;//上传速度
                 bool downDominant = downstream > upstream;
                 float hybridHeight = surface.Height * (1 - (downDominant ? upstream : downstream) * (1 - HEADROOM)) + surface.Top;
                 float dominantHeight = surface.Height * (1 - (downDominant ? downstream : upstream) * (1 - HEADROOM)) + surface.Top;
