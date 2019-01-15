@@ -11,7 +11,6 @@ namespace UpDownMonitor
     public class NetworkInterfaceSampler : IEnumerable<Sample>
     {
         private NetworkInterface nic;
-
         public NetworkInterfaceSampler()
         {
             Loop();

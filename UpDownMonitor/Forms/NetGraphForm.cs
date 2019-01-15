@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Net.NetworkInformation;
 
 namespace UpDownMonitor
 {
@@ -36,7 +37,7 @@ namespace UpDownMonitor
             sampler = netGraph.Sampler = new NetworkInterfaceSampler();
             sampler.SampleAdded += Sampler_SampleAdded;
 
-            var setting = new Settings()
+            Settings setting = new Settings()
             {
                 Bounds = new Rectangle(),
                 Topmost = true,
@@ -105,7 +106,7 @@ namespace UpDownMonitor
 
         private void SyncSamplerOptions(Options options)
         {
-            var nic = sampler.NetworkInterface = options.NetworkInterface;
+            NetworkInterface nic = sampler.NetworkInterface = options.NetworkInterface;
 
             sampler.MaximumSpeed = options.NicSpeeds.ContainsKey(nic?.Id ?? string.Empty) ? options.NicSpeeds[nic.Id] : 0;
 
@@ -114,9 +115,14 @@ namespace UpDownMonitor
 
         private void SyncUiOptions(Options options)
         {
-            if (options.Topmost && !topmost.Selected) topmost.SimulateClick();
-            if (options.Transparent && !transparent.Selected) transparent.SimulateClick();
-
+            if (options.Topmost && !topmost.Selected)
+            {
+                topmost.SimulateClick();
+            }
+            if (options.Transparent && !transparent.Selected)
+            {
+                transparent.SimulateClick();
+            }
             toolTip.Active = options.Tooltips;
         }
 
@@ -325,12 +331,12 @@ namespace UpDownMonitor
             ControlPaint.DrawBorder3D(e.Graphics, ClientRectangle, Border3DStyle.RaisedInner, Border3DSide.Top | Border3DSide.Left);
 
             // Draw toolbox edge.
-            var toolboxEdge = toolbox.Bounds;
+            Rectangle toolboxEdge = toolbox.Bounds;
             toolboxEdge.Offset(-toolbox.Width, 0);
             ControlPaint.DrawBorder3D(e.Graphics, toolboxEdge, Border3DStyle.RaisedInner, Border3DSide.Right);
 
             // Draw status bar border.
-            var statusBarBounds = statusBar.Bounds;
+            Rectangle statusBarBounds = statusBar.Bounds;
             statusBarBounds.Inflate(1, 1);
             ControlPaint.DrawBorder(e.Graphics, statusBarBounds, SystemColors.ButtonShadow, ButtonBorderStyle.Solid);
         }
